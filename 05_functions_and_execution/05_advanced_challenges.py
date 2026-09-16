@@ -20,7 +20,11 @@ from test_api.checks import run_test, skip_test, format_err_msg
 
 
 def find_total_of_multiples(limit):
-    pass
+    current_sum = 0
+    for i in range(limit):
+        if i % 3 == 0 or i % 5 == 0:
+            current_sum += i
+    return current_sum
 
 
 @run_test
@@ -74,11 +78,13 @@ def test_find_total_of_multiples():
 # count_printer_errors(control) should return "8/22"
 
 
-def count_printer_errors():
-    pass
+def count_printer_errors(control):
+    denominator = len(control)
+    numerator = sum(1 for char in control if char < 'a' or char > 'm')
+    return f"{numerator}/{denominator}"
 
 
-@skip_test
+@run_test
 def test_count_printer_errors():
     # countPrinterErrors() should return zero for an empty control string
     assert count_printer_errors("") == "0/0", format_err_msg(
@@ -112,10 +118,19 @@ def test_count_printer_errors():
 
 
 def get_ordinal_suffix(num):
-    pass
+    if 10 <= num % 100 <= 20:
+        return "th"
+    elif num % 10 == 1:
+        return "st"
+    elif num % 10 == 2:
+        return "nd"
+    elif num % 10 == 3:
+        return "rd"
+    else:
+        return "th"
 
 
-@skip_test
+@run_test
 def test_get_ordinal_suffix():
     # get_ordinal_suffix() returns 'st' when given 1
     assert get_ordinal_suffix(1) == "st", format_err_msg("st", get_ordinal_suffix(1))
@@ -162,10 +177,10 @@ def test_get_ordinal_suffix():
 # This function should take a string as its argument and
 # return True if each character appears only once and False otherwise
 def contains_no_repeats(str):
-    pass
+    return len(set(str)) == len(str)
 
 
-@skip_test
+@run_test
 def test_contains_no_repeats():
     # contains_no_repeats() returns True for an empty string
     assert contains_no_repeats("") is True, format_err_msg(True, "")
@@ -201,10 +216,13 @@ def test_contains_no_repeats():
 
 
 def check_usernames_available(usernames, *names):
-    pass
+    for name in names:
+        if name in usernames:
+            return False
+    return True
 
 
-@skip_test
+@run_test
 def test_check_usernames_available():
     # check_usernames_available returns True for a single available username
     assert check_usernames_available(["Roy", "Moss"], "Jen") is True, format_err_msg(
