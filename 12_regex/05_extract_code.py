@@ -24,7 +24,16 @@ def extract_code(text):
     You should extract that number from the string and return it as
     an integer
     """
-    pass
+    # Your pattern should match a string containing a series of consecutive
+    #  digits composing a number
+    YOUR_REGEX_HERE = r'\d+'
+    # replace 'x' with an appropriate regular expression pattern
+
+    match = re.search(YOUR_REGEX_HERE, text)
+    if match:
+        return int(match.group())
+    else:
+        return None
 
 
 @run_test
