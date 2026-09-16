@@ -26,7 +26,10 @@ def add_decimals(fractions_to_add):
     https://docs.python.org/3/library/decimal.html#module-decimal
     """
     
-    pass
+    from decimal import Decimal
+
+    total = sum(Decimal(fraction) for fraction in fractions_to_add)
+    return str(total)
 
 
 @run_test
