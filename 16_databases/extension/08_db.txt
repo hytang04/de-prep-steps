@@ -5,3 +5,7 @@ Let me eat Cake! 🍰
 Write a command that shows me all of the items in baked_goods that contains the word 'cake' in the name!
 
 Paste result below: 
+
+2|Carrot cake|Pain Au Rajput|0
+8|Cheesecake|Flower Power|0
+12|Wedding cake|Robs Cobs|0
